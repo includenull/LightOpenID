@@ -917,9 +917,7 @@ class LightOpenID
             # In such case, validation would fail, since we'd send different data than OP
             # wants to verify. stripslashes() should solve that problem, but we can't
             # use it when magic_quotes is off.
-            $value = $this->data['openid_' . str_replace('.','_',$item)];
-            $params['openid.' . $item] = function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc() ? stripslashes($value) : $value;
-
+            $params['openid.' . $item] = $this->data['openid_' . str_replace('.','_',$item)];
         }
 
         $params['openid.mode'] = 'check_authentication';
